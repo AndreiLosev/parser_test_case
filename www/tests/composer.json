@@ -1,0 +1,18 @@
+{
+    "name": "sotbit/parsertest",
+    "description": "test_case_from_sotbit_parser",
+    "autoload": {
+        "psr-4": {
+            "Sotbit\\Parsertest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "andrei",
+            "email": "an.losev@sotbit.ru"
+        }
+    ],
+    "require": {
+        "symfony/console": "^5.3"
+    }
+}
