@@ -7,7 +7,7 @@ $APPLICATION->SetTitle("page_test");
 	array(
 		"COMPONENT_TEMPLATE" => "bootstrap_v4",
 		"IBLOCK_TYPE" => "news",
-		"IBLOCK_ID" => "1",
+		"IBLOCK_ID" => "6",
 		"NEWS_COUNT" => "20",
 		"USE_SEARCH" => "N",
 		"USE_RSS" => "N",
@@ -86,6 +86,14 @@ $APPLICATION->SetTitle("page_test");
 		"SET_STATUS_404" => "N",
 		"SHOW_404" => "N",
 		"MESSAGE_404" => "",
+		"TAGS_CLOUD_ELEMENTS" => "150",
+		"PERIOD_NEW_TAGS" => "",
+		"DISPLAY_AS_RATING" => "rating",
+		"FONT_MAX" => "50",
+		"FONT_MIN" => "10",
+		"COLOR_NEW" => "3E74E6",
+		"COLOR_OLD" => "C0C0C0",
+		"TAGS_CLOUD_WIDTH" => "100%",
 		"VARIABLE_ALIASES" => array(
 			"SECTION_ID" => "SECTION_ID",
 			"ELEMENT_ID" => "ELEMENT_ID",
