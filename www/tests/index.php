@@ -6,4 +6,5 @@ Bitrix\Main\Loader::includeModule('iblock');
 use Sotbit\Parsertest\Page;
 
 
-$qwe = new Page();
+$pageTest = new Page();
+$pageTest->run();
