@@ -1,0 +1,40 @@
+version: '3'
+
+services: 
+    php:
+        build: 
+            context: ./config/php
+            dockerfile: Dockerfile
+        container_name: php
+        volumes: 
+            - ./www:/var/www/html
+            - ./config/php/php.ini:/usr/local/etc/php/php.ini
+        ports: 
+            - "80:80"
+        environment:
+            XDEBUG_CONFIG: "remote_host=192.168.220.1 remote_enable=1 remote_autostart=off  remote_port=9003"
+            PHP_IDE_CONFIG: "serverName=first"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+    mysql:
+        image: mysql
+        container_name: mysql
+        restart: unless-stopped
+        command: --default-authentication-plugin=mysql_native_password
+        command: --innodb_use_native_aio=0
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./mysql:/var/lib/mysql
+        # Задаем пароль для root пользователя
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+    adminer:
+        image: adminer
+        restart: unless-stopped
+        ports:
+            - 8080:8080
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
