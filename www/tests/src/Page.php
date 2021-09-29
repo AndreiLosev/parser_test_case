@@ -3,25 +3,34 @@
 namespace Sotbit\Parsertest;
 
 use Bitrix\Iblock\IblockTable;
-use Bitrix\Main\Type\DateTime;
+use GuzzleHttp\Client;
 use Error;
 
 class Page
 {
     const TestIblockPostFix = 'TEST';
+    const PATH_TO_PARSER = '/bitrix/admin/parser_edit.php';
+    protected $queryParam = [
+        'start' => 1,
+        'lang' => 'ru',
+        'ID' => 1,
+    ];
     protected string $pagePath;
     protected int $new_iblock_id;
     protected int $iblock_id;
+    protected string $host;
 
-    public function __construct()
+    public function __construct(string $host)
     {
         $this->pagePath = $_SERVER['DOCUMENT_ROOT'] . '/test_public/page_test.php';
         $this->iblock_id = 1;
+        $this->host = $host;
     }
 
     public function run()
     {
-        $this->copyIblock();
+        // $this->copyIblock();
+        $this->query();
     }
 
     protected function copyIblock()
@@ -57,5 +66,18 @@ class Page
         }
 
         $this->new_iblock_id = $result->getId();
+    }
+
+    protected function query() {
+
+        $client = new Client([
+            'base_uri' => $this->host,
+        ]);
+        $qwe = $client->request('GET', $this->host . self::PATH_TO_PARSER, [
+            'query' => $this->queryParam,
+            'headers' => ['Cookie' => 'PHPSESSID=P0WFch6Z80EoKSzsmFWi21NAheMbu1N8'],
+        ]);
+
+        print_r($qwe->getBody()->getContents());
     }
 }
